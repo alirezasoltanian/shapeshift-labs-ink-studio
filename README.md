@@ -671,3 +671,58 @@ node cli/ink-studio.js check watcher
 Visual baselines are created explicitly by `snap`; no baseline images are bundled. `check` compares rendered pixels against those baselines. Keep baselines when they provide useful regression evidence; generated previews and the compiled `dist/` bundle can be regenerated.
 
 The package is currently version `0.1.0`, marked private, and has license metadata `UNLICENSED`.
+
+
+ترجمه
+Post
+
+See new posts
+Conversation
+Loktar 🇺🇸
+@loktar00
+Been deep in pixel-art gaussian splats the last couple days. 
+
+People asking for "prompts" so here is how it actually works instead... it's not just a single prompt, each one is a single full spec but it encompasses all of the following.
+
+The core is a bunch of 3D gaussians, little oriented ellipsoids, all built in code. 
+
+No images, no models loaded. Each one gets projected to the screen, sorted back to front every frame, and drawn with a firm core so they read as crisp pixels instead of fuzz. 
+
+Render to a 640x360 buffer, scale up 3x, snap to a palette, light dither. That's where the pixel art look comes from.
+
+Lighting every spat makes them look much better, warm light (like fire with the tree for example) vs cool light like the moonlight. Flat colors splats look terrible (like the qwen 27b example).
+
+1:31 AM · Nov 16, 2026
+·
+4,049
+ Views
+Relevant
+View quotes
+
+Loktar 🇺🇸
+@loktar00
+·
+11h
+Then there's the animation, you generate bones and have the splats attach to the bones. Similar to skin on a normal model. Each splat follows the same lighting every frame just like the static scenes. 
+
+I usually do a last pass with some style injections I've made over the last 6 months or so, HD-2D lighting, bloom, tilt shift etc. 
+
+To get them working on local models use a stronger model as the "teacher" get a good working recipe test on the open model, and iterate.
+0:15 / 0:30
+Loktar 🇺🇸
+@loktar00
+·
+11h
+Throw the above in your favorite model and have it spit out some prompts for you to start testing... or just ask Fable to get the ball rolling!
+Teortaxes▶️ (DeepSeek 推特🐋铁粉 2023 – ∞)
+@teortaxesTex
+·
+6h
+> The core is a bunch of 3D gaussians, little oriented ellipsoids, all built in code.
+
+Seriously speaking, what part of that is "splat"? I see that this look is captured by surfels.
+Loktar 🇺🇸
+@loktar00
+·
+5h
+True, it's splatting as the renderer but nothing's trained, it's all procedural. And yeah definitely surfel-ish in areas, a lot of the splats are squashed flat onto surfaces.
